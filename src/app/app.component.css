@@ -2,3 +2,9 @@
     margin:10px;
     top:1em;
   }
+  
+  .modal-dialog {
+    min-width: 75vh !important;
+  }
+
+  

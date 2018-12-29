@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.modal-footer {
+    padding:2%;    
+}
+
+.modal-body {
+    padding:2%;
+}
+
+.modal-header {
+    padding:2%;
+}

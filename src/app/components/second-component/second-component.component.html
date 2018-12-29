@@ -1,16 +1,16 @@
-<div class="second-modal modal-header">
+    <div class="modal-header">
   Modal 2 Header
 </div>
 <div class="modal-body">
   Modal 2 Body
 </div>
 <div class="modal-footer">
-   <button type="button" class="btn btn-default" (click)="hide()">Close</button>
+   <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
   <button type="button" class="btn btn-default" (click)="modal3.show()">Show modal 3</button>
   <button type="button" class="btn btn-primary" (click)="save()">Save changes</button>
 </div>
-
-
 <app-modal #modal3>
+  <app-modal-dialog>
     <app-third-component [modal]="modal3"></app-third-component>
-   </app-modal>
+  </app-modal-dialog>
+</app-modal>

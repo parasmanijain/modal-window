@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-third-component',
@@ -7,14 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ThirdComponentComponent implements OnInit {
 
+
   @Input() modal;
+
   constructor() { }
 
   ngOnInit() {
-  }
-
-  hide() {
-    this.modal.hide();
   }
 
   save() {

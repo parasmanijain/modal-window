@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'modal-window';
+
+  @ViewChild('modal1') modal1;
+
+  show() {
+    this.modal1.show();
+  }
 }

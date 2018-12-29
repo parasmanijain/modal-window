@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-first-component',
@@ -8,18 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FirstComponentComponent implements OnInit {
 
   @Input() modal;
+
+  @ViewChild('modal2') modal2;
+
   constructor() { }
 
-
   ngOnInit() {
-  }
-
-  hide() {
-    this.modal.hide();
   }
 
   save() {
     alert('changes for Modal 1 saved');
   }
-
 }
