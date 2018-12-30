@@ -6,7 +6,6 @@ import { ModalService } from './components/modal/modal.service';
 import { FirstComponentComponent } from './components/first-component/first-component.component';
 import { SecondComponentComponent } from './components/second-component/second-component.component';
 import { ThirdComponentComponent } from './components/third-component/third-component.component';
-import { ModalDialogComponent } from './components/modal/modal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -14,9 +13,8 @@ import { ModalDialogComponent } from './components/modal/modal-dialog.component'
     ModalComponent,
     FirstComponentComponent,
     SecondComponentComponent,
-    ThirdComponentComponent,
-    ModalDialogComponent
-  ],
+    ThirdComponentComponent
+    ],
   imports: [
     BrowserModule
   ],
