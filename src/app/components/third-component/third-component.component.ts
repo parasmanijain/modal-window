@@ -1,4 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { HTML_CODES} from '../../constants/constants';
 
 @Component({
   selector: 'app-third-component',
@@ -9,6 +10,10 @@ export class ThirdComponentComponent implements OnInit {
 
 
   @Input() modal;
+
+  public close = HTML_CODES.close;
+
+  public buttonGroup = 'modal-footer';
 
   constructor() { }
 

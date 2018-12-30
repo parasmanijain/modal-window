@@ -1,8 +1,9 @@
+
 <button type="button"  class="instruction" (click)="modal1.show()">
     Click to open modal window
 </button>
-<app-modal #modal1>
-    <app-modal-dialog>
-        <app-first-component [modal]="modal1"></app-first-component>
-    </app-modal-dialog>
+<app-modal #modal1 [current]="'modal1'" 
+    [previous]="null" [buttonGroup]="buttonGroup">
+    <app-first-component [modal]="modal1">
+    </app-first-component>
 </app-modal>

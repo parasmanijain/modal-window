@@ -8,6 +8,8 @@ import { Component, ViewChild } from '@angular/core';
 export class AppComponent {
   title = 'modal-window';
 
+  public buttonGroup = 'modal-footer';
+
   @ViewChild('modal1') modal1;
 
   show() {

@@ -1,16 +1,18 @@
     <div class="modal-header">
   Modal 2 Header
+  <span class="close" [innerHTML]="close" (click)="modal.hide()"></span>
 </div>
-<div class="modal-body">
-  Modal 2 Body
-</div>
-<div class="modal-footer">
-   <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
+    <div class="modal-body">
+        <div>Clicking outside or pressing Escape Key will not work.</div>
+        <div>Click on <span [innerHTML]="close"></span> or Close Button to close the Second Modal Window.</div>
+        <div>Click on Save button to save the changes.</div>
+        <div>Click on Show Modal 3 to open third modal window on top of second.</div>
+    </div>
+  <div [ngClass]="buttonGroup">
+    <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
   <button type="button" class="btn btn-default" (click)="modal3.show()">Show modal 3</button>
-  <button type="button" class="btn btn-primary" (click)="save()">Save changes</button>
+  <button type="button" class="btn btn-primary" (click)="save()">Save</button>
 </div>
-<app-modal #modal3>
-  <app-modal-dialog>
+<app-modal  [buttonGroup]="buttonGroup" [current]="'modal3'" [previous]="'modal2'" #modal3>
     <app-third-component [modal]="modal3"></app-third-component>
-  </app-modal-dialog>
 </app-modal>

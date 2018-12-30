@@ -1,19 +1,20 @@
 
-<div class="modal-header">
-  Modal 1 Header
-</div>
-<div class="modal-body">
-    Modal 1 Body
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
-  <button type="button" class="btn btn-default" (click)="modal2.show()">Show modal 2</button>
-  <button type="button" class="btn btn-primary" (click)="save()">Save changes</button>
-</div>
-   
-<app-modal #modal2>
-  <app-modal-dialog>
+  <div class="modal-header">
+    Modal 1 Header
+    <span class="close" [innerHTML]="close" (click)="modal.hide()"></span>
+  </div>
+  <div class="modal-body">
+    <div>Clicking outside or pressing Escape Key will not work.</div>
+    <div>Click on <span [innerHTML]="close"></span> or Close Button to close the First Modal Window.</div>
+    <div>Click on Save button to save the changes.</div>
+    <div>Click on Show Modal 2 to open second modal window on top of first.</div>
+  </div>
+  <div [ngClass]="buttonGroup">
+    <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
+    <button type="button" class="btn btn-default" (click)="modal2.show()">Show modal 2</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+<app-modal [buttonGroup]="buttonGroup" [current]="'modal2'" [previous]="'modal1'" #modal2>
     <app-second-component [modal]="modal2"></app-second-component>
-  </app-modal-dialog>
 </app-modal>
    
