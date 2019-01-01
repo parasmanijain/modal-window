@@ -1,4 +1,4 @@
-# ModalWindow
+# Modal Window
 
 Modal Window created using Angular 7 and Bootstrap CSS to provide consistent behavior across multiple browsers and viewports without using traditional constructs like Bootstrap JS and jquery which doesn't support Stacking of Modals on top of another.
 
