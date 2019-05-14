@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+You can add global styles to this file, and also import other style files
 
 .modal-footer {
     height: 100% !important;
@@ -15,11 +15,6 @@
     padding:2%;
     max-height: 10vh !important;
 }
-
-.close {
-    cursor: pointer;
-}
-
 .instruction {
     margin:10px;
     top:10px;
