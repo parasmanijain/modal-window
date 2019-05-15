@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ThirdComponentComponent } from './third-component.component';
 
-describe('ThirdComponentComponent', () => {
+xdescribe('ThirdComponentComponent', () => {
   let component: ThirdComponentComponent;
   let fixture: ComponentFixture<ThirdComponentComponent>;
 
@@ -19,7 +19,7 @@ describe('ThirdComponentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ModalService } from './modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -18,15 +17,17 @@ export class ModalComponent implements OnInit {
   public visible = false;
   public visibleAnimate = false;
 
-  constructor(private modalService: ModalService,
-    @Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
   }
 
   public show(): void {
     let previousbuttons;
-    this.modalService.show(this);
+    this.visible = true;
+    setTimeout(() => {
+      this.visibleAnimate = true;
+    }, 100);
     if (this.previous) {
       previousbuttons = this.document.body.querySelector('#' + this.previous + ' .' + this.buttonGroup).getElementsByTagName('button');
       for (const button of previousbuttons) {
@@ -37,7 +38,10 @@ export class ModalComponent implements OnInit {
 
   public hide(): void {
     let previousbuttons;
-   this.modalService.hide(this);
+    this.visibleAnimate = false;
+    setTimeout(() => {
+      this.visible = false;
+    }, 100);
    if (this.previous) {
     previousbuttons = this.document.body.querySelector('#' + this.previous + ' .' + this.buttonGroup).getElementsByTagName('button');
     for (const button of previousbuttons) {

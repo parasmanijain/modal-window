@@ -18,7 +18,9 @@
     Cras turpis massa, iaculis sed mauris eu, laoreet pulvinar justo. Phasellus hendrerit vulputate eros sit amet pharetra. Nunc consequat dolor id nisl feugiat vehicula. Aenean tincidunt neque vitae nibh fringilla condimentum. Fusce ipsum risus, rhoncus nec felis et, sodales accumsan ipsum. Aliquam consectetur nisi id lacus lobortis dignissim. Ut ut suscipit turpis. Etiam ultrices mattis accumsan. Suspendisse lorem mi, pretium et purus nec, aliquet tincidunt magna. In id hendrerit neque. Cras fermentum libero sit amet eleifend pellentesque. Proin consectetur facilisis massa non porta. Sed porttitor est diam, non lacinia arcu feugiat a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque sodales nisi nec neque mollis sagittis.
 </div>
 </div>
-<div [ngClass]="buttonGroup">
-  <button type="button" class="btn  btn-autosize btn-default" (click)="modal.hide()">Close</button>
-  <button type="button" class="btn  btn-autosize btn-primary" (click)="save()">Save</button>
+<div class="modal-footer">
+  <div [ngClass]="buttonGroup">
+    <button type="button" class="btn  btn-autosize btn-default" (click)="modal.hide()">Close</button>
+    <button type="button" class="btn  btn-autosize btn-primary" (click)="save()">Save</button>
+  </div>
 </div>
