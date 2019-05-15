@@ -1,6 +1,8 @@
 # Modal Window
 
-Modal Window created using Angular 7 and Bootstrap CSS to provide consistent behavior across multiple browsers and viewports without using traditional constructs like Bootstrap JS and jquery which doesn't support Stacking of Modals on top of another.
+Modal Window created using Angular 7 to provide consistent behavior across multiple browsers and viewports without using traditional constructs like Bootstrap or jquery which doesn't support Stacking of Modals on top of another.
+The user can create nested modal windows upto any number of levels and customize the modal window by styling its header, body and footer.
+The modals by default overlap parent modal windows and this beghavior can be customized by changing .modal class in modal.component.css
 
 ![alt text](img/chrome-modal-window.jpg)
 ![alt text](img/edge-modal-window.jpg)
@@ -18,7 +20,6 @@ Checkout the demo on StackBlitz - https://angular7-modal-window.stackblitz.io/
 Import
 `
 import { ModalComponent } from './components/modal/modal.component';
-import { ModalService } from './components/modal/modal.service';
 `
 
 Declaration
@@ -27,14 +28,6 @@ declarations: [
      ModalComponent
   ]
 `
-
-Provider 
-`
-providers: [
-     ModalService
-  ]
-`
-
 ### Add selector in HTML
 ```
 <app-modal #modal1 [current]="'modal1'" 
@@ -71,40 +64,10 @@ Property `buttonGroup` represents class being used for action buttons in the foo
     <button type="button" class="btn  btn-autosize btn-primary" (click)="save()">Save</button>
   </div>
 ```
-
-### modal.service.ts
-``` typescript
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-
-export class ModalService {
-
-  constructor() { }
-
-  public show(modal): void {
-    modal.visible = true;
-    setTimeout(() => {
-      modal.visibleAnimate = true;
-    }, 100);
-  }
-
-  public hide(modal): void {
-    modal.visibleAnimate = false;
-    setTimeout(() => {
-      modal.visible = false;
-    }, 100);
-  }
-}
-```
-
 ### modal.component.ts
 ``` typescript
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ModalService } from './modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -122,15 +85,17 @@ export class ModalComponent implements OnInit {
   public visible = false;
   public visibleAnimate = false;
 
-  constructor(private modalService: ModalService,
-    @Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
   }
 
   public show(): void {
     let previousbuttons;
-    this.modalService.show(this);
+    this.visible = true;
+    setTimeout(() => {
+      this.visibleAnimate = true;
+    }, 100);
     if (this.previous) {
       previousbuttons = this.document.body.querySelector('#' + this.previous + ' .' + this.buttonGroup).getElementsByTagName('button');
       for (const button of previousbuttons) {
@@ -141,14 +106,16 @@ export class ModalComponent implements OnInit {
 
   public hide(): void {
     let previousbuttons;
-   this.modalService.hide(this);
+    this.visibleAnimate = false;
+    setTimeout(() => {
+      this.visible = false;
+    }, 100);
    if (this.previous) {
     previousbuttons = this.document.body.querySelector('#' + this.previous + ' .' + this.buttonGroup).getElementsByTagName('button');
     for (const button of previousbuttons) {
       button.disabled = false;
     }
    }
-
   }
 
   public onContainerClicked(event: MouseEvent): void {
@@ -157,7 +124,6 @@ export class ModalComponent implements OnInit {
     }
   }
 }
-
 ```
 
 ### modal.component.html
@@ -177,47 +143,52 @@ export class ModalComponent implements OnInit {
 
 ### modal.component.css
 ``` css
-  .modal {
-    position: fixed;
-    margin: auto;
-    z-index: 1100;
-    width:100% !important;
-    height:100% !important;
-    transform: translate(0%, 0%);
-    min-width:90% !important;
-    min-height:500px !important;
-    max-width:95vh !important;
-    max-height:95vh !important;
+   /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+  
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
   }
 
-   .modal-dialog {
-     max-width:95vw !important;
-     max-height:95vh !important;
-   } 
-  .modal-content{   
-    position: absolute !important;
-    max-width:90vw !important;
-    max-height: 90vh !important;
-  }
 
-  .modal-overlay {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
 
-  .modal.fade .modal-dialog {
-    transform: translate(0%,0%);
-  }
-
-  .body {
-    overflow:hidden !important;
-  }
-
- 
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
 ```
 
 ## First Modal Window
@@ -342,26 +313,39 @@ export class SecondComponentComponent implements OnInit {
 
 ### styles.css
 ```css
-/* You can add global styles to this file, and also import other style files */
-
-.modal-footer {
-    height: 100% !important;
-    max-height:10vh !important;  
-}
-
 .modal-body {
-    padding:2%;
-    max-height:50vh !important;
-    overflow: auto !important;
+  max-height:50vh !important;
+  overflow: auto !important;
+  padding:2%;
 }
 
 .modal-header {
-    padding:2%;
-    max-height: 10vh !important;
+  max-height: 10vh !important;
+  background-color: #5cb85c;
+  color: white;
+  padding:2%;
 }
 
+.modal-footer {
+  height: 100% !important;
+  max-height:10vh !important; 
+  padding: 2px 16px;
+background-color: #5cb85c;
+color: white;
+}
+/* The Close Button */
 .close {
-    cursor: pointer;
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .instruction {
@@ -371,29 +355,6 @@ export class SecondComponentComponent implements OnInit {
 
   .btn {
     white-space: normal !important
-  }
-
-  .btn-autosize {
-    padding: 1px 5px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 3px;
-  }
-  @media screen and (min-width: 768px) {
-    .btn-autosize {
-      padding: 4px 8px;
-      font-size: 12px;
-      line-height: 1.5;
-      border-radius: 3px;
-    }
-  }
-  @media screen and (min-width: 992px) {
-    .btn-autosize {
-      padding: 8px 14px;
-      font-size: 16px;
-      line-height: 1.33;
-      border-radius: 6px;
-    }
   }
 ```
 ## Author
