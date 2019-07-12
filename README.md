@@ -1,6 +1,6 @@
 # Modal Window
 
-Modal Window created using Angular 7 to provide consistent behavior across multiple browsers and viewports without using traditional constructs like Bootstrap or jquery which doesn't support Stacking of Modals on top of another.
+Modal Window created using Angular 8 to provide consistent behavior across multiple browsers and viewports without using traditional constructs like Bootstrap or jquery which doesn't support Stacking of Modals on top of another.
 The user can create nested modal windows upto any number of levels and customize the modal window by styling its header, body and footer.
 The modals by default overlap parent modal windows and this beghavior can be customized by changing .modal class in modal.component.css
 
@@ -12,7 +12,7 @@ The modals by default overlap parent modal windows and this beghavior can be cus
 
 ## Demo
 
-Checkout the demo on StackBlitz - https://angular7-modal-window.stackblitz.io/ 
+Checkout the demo on StackBlitz - https://angular8-modal-window.stackblitz.io/ 
 
 ## Adding the component in your project
 

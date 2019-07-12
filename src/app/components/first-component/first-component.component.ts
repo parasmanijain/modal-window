@@ -10,7 +10,7 @@ export class FirstComponentComponent implements OnInit {
 
   @Input() modal;
 
-  @ViewChild('modal2') modal2;
+  @ViewChild('modal2', {static: true} ) modal2;
 
   public buttonGroup = 'modal-footer';
 
